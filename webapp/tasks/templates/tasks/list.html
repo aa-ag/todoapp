@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h3>TO DO</h3>
 
 <form method="POST" action="">
@@ -6,20 +9,23 @@
     <input 
         type="submit" 
         name="Create Task"
+        class="btn btn-primary"
     >
 </form>
 
 {% for task in tasks %}
 
     <div>
-        <a href="{% url 'update_task' task.id %}">Update</a>
-        <a href="{% url 'delete' task.id %}">Delete</a>
-
         {% if task.complete == True %}
         <strike>{{ task }}</strike>
         {% else %}
         <span>{{ task }}</span>
         {% endif %}
+
+        <a href="{% url 'update_task' task.id %}">Update</a>
+        <a href="{% url 'delete' task.id %}">Delete</a>
     </div>
 
 {% endfor %}
+
+{% endblock %}
